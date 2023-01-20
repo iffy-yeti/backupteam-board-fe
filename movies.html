@@ -13,53 +13,57 @@
         width: 100%;
         border: 1px solid rgba(146, 255, 217, 0.267);
         border-radius: 20px;
-        color:rgb(27, 106, 64);
+        color: rgb(27, 106, 64);
     }
+
     a {
-        color:rgb(11, 182, 125);
+        color: rgb(11, 182, 125);
     }
+
     h1 {
-        color:rgb(0, 126, 73)
+        color: rgb(0, 126, 73)
     }
 </style>
+
 <body>
     <h1>영화리스트다</h1>
     <a href="register.html">등록하러가기</a>
 
     <table border="1">
         <tr>
-            <td>ID</td>
-            <td>제목</td>
-            <td>등록자</td>
-            <td>조회수</td>
-            <td>등록날짜</td>
+            <th>ID</th>
+            <th>제목</th>
+            <th>등록자</th>
+            <th>조회수</th>
+            <th>등록날짜</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>제목</td>
-            <td>등록자</td>
-            <td>조회수</td>
-            <td>등록날짜</td>
-        </tr>
+        <tbody id="movies">
+<!-- tbody = table body, 이걸 넣으니까 테이블 생겼음 -- tbody에 id를 생성해서 tr 을 id에 넣어주겠다는 뜻이래-->ㄴㅇㄹ
+        </tbody>
     </table>
     <!-- <script src="app.js"></script>  -->
-    <script>
-        fetch('http://localhost:9000/movies')
-            .then((response) => response.json())
-            .then(movies => {
-                const html = movies.app(movie => {
-                    return 
-                    <tr>
-                        <td>${movie.id}</td>
-                        <td>${movie.movie_title}</td>
-                        <td>${movie.name}</td>
-                        <td>${movie.hit_count}</td>
-                        <td>${movie.created_at}</td>
-                    </tr>
-                })
-                document.getElementById("movies").innerHTML = html.join('')
-            })
-    </script>
+    
 </body>
-   
+
 </html>
+<script>
+    fetch('http://localhost:9000/movies')
+        .then((response) => response.json())
+        .then((movies) => {
+            const html = movies.map(movie => {
+                //효원님이 알려준 조회수 이동/조회 방법 - href로
+                return `
+                <tr>
+                    <td>${movie.id}</td> 
+                    <td><a href="movie.html?id=${movie.id}"> ${movie.movie_title}</a></td>
+                    <td>${movie.name}</td>
+                    <td>${movie.hit_count}</td>
+                    <td>${movie.created_at}</td>
+                </tr>`
+            })
+            document.getElementById("movies").innerHTML = html.join('')
+            //tr 안의 애들 map 함수로 배열로 나온당
+            //53번줄 html을 "movies"라는 id에 join 시켜줌 join 안의 '' 없애면 보기 안좋아짐.. 쉼표가 생겨서
+            //tr 안의 배열들을 join (문자열 반환해주는애) 이 문자열로 바꿔줬당
+        })
+</script>

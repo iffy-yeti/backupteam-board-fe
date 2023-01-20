@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-    body{
-        text-decoration-line: none;
-    }
-</style>
+
 <body>
-<h1>영화 제목 등록하기</h1>
-<a href="index.html">홈</a>
-<a href="movie.html">영화보기</a><br>
-영화 제목 : <input type="text" id="movie_title" /> <br>
-<button onclick="buttonClick()">등록하기</button>
+    <h1>영화 제목 등록하기</h1>
+    <a href="index.html">홈</a>
+    <a href="movie.html">영화보기</a><br>
+    영화 제목 : <input type="text" id="movie_title" /> <br>
+    <button onclick="buttonClick()">등록하기</button>
 </body>
+
 </html>
 <script>
-    const buttonCLick = () => {
-        fetch('http://localhost:9000/movies')
+    const buttonClick = () => {
+        fetch('http://localhost:9000/movies', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                movie_title: document.getElementById('movie_title').value,
+                user_id: 9
+            }),
+        }).then((response) => response.json())
+        //response 한번 받으면 끝 이라고 생각해서 더이상 뭐 안해주네!!
+            .then((data) => {
+                location.href = "movies.html"
+            })
     }
 </script>
