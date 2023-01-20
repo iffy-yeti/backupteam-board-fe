@@ -1,0 +1,34 @@
+<h1>서버로 요청 테스트</h1>
+<script>
+    //fetch('http://localhost:9000/movies')
+    //.then((Response) => response.json())
+    //.then((data) =>
+
+    fetch('http://localhost:9000/movies/1')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("전체 영화 가져오기 :", data)
+        });
+
+    fetch('http://loaclhost:9000/movies/1')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("영화 하나 가져오기 :", data)
+        });
+
+    fetch('http://localhost:9000/movies', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            movie_title: "avatar3",
+            user_id: 9
+        }),
+    }).then((response) => response.json())
+        .then((data) => {
+            console.log("register 결과 :", data)
+        }) 
+
+        
+</script>
