@@ -26,7 +26,7 @@
 </style>
 
 <body>
-    <h1>영화리스트다</h1>
+    <h1>영화리스트입니다❤</h1>
     <a href="register.html">등록하러가기</a>
 
     <table border="1">
@@ -38,7 +38,7 @@
             <th>등록날짜</th>
         </tr>
         <tbody id="movies">
-<!-- tbody = table body, 이걸 넣으니까 테이블 생겼음 -- tbody에 id를 생성해서 tr 을 id에 넣어주겠다는 뜻이래-->ㄴㅇㄹ
+<!-- tbody = table body, 이걸 넣으니까 테이블 생겼음 -- tbody에 id를 생성해서 tr 을 id에 넣어주겠다는 뜻이래-->
         </tbody>
     </table>
     <!-- <script src="app.js"></script>  -->
@@ -51,7 +51,6 @@
         .then((response) => response.json())
         .then((movies) => {
             const html = movies.map(movie => {
-                //효원님이 알려준 조회수 이동/조회 방법 - href로
                 return `
                 <tr>
                     <td>${movie.id}</td> 
