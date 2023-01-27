@@ -65,7 +65,7 @@
     fetch(`http://localhost:9000/movies?page=${page}`)
         .then((response) => response.json())
         .then((movies) => {
-            const html = movies.movies.map(movie => {
+            const html = movies.moviesList.map(movie => {
                 //movies.movies 는 movies안의 배열을 돌라고
                 return `
                 <tr>
@@ -80,7 +80,7 @@
             //tr 안의 애들 map 함수로 배열로 나온당
             //53번줄 html을 "movies"라는 id에 join 시켜줌 join 안의 '' 없애면 보기 안좋아짐.. 쉼표가 생겨서
             //tr 안의 배열들을 join (문자열 반환해주는애) 이 문자열로 바꿔줬당
-            const lastPage = movies.pageInfo.lastPage
+            const lastPage = movies.lastPage
             //movies안의 pageInfo, lastPage 가 있는디 그걸 끄내려고 이렇게 씀
             //console.log(lastPage)
             const pages = []
